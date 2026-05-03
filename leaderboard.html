@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard | Tea House</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- APP-STYLE LIST RESET --- */
+        body.board-page { background: #0a0a0c; color: #fff; font-family: 'Inter', sans-serif; min-height: 100vh; padding-bottom: 90px; margin: 0; }
+        
+        .header-area { text-align: center; padding: 50px 20px 20px; }
+        .header-area h1 { font-family: 'Oswald', sans-serif; font-size: 2.2rem; color: #fff; margin: 0; letter-spacing: 1px; text-transform: uppercase; }
+        .header-area p { color: #888; font-size: 0.95rem; margin-top: 8px; }
+
+        /* The Wrapper restricts the width nicely */
+        .leaderboard-wrapper { max-width: 500px; margin: 0 auto 40px; padding: 0 15px; }
+
+        /* 🚨 OVERRIDE: Transparent container, let rows build the shape 🚨 */
+        main#leaderboard-feed {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            display: flex;
+            flex-direction: column;
+            width: 100% !important;
+        }
+
+        /* --- THE BASE ROW --- */
+        .rank-row {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            transition: 0.2s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .rank-pos { width: 45px; font-size: 1.1rem; font-weight: 700; color: #666; font-family: 'Oswald', sans-serif; text-align: left; }
+        
+        .rank-info { flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: left; }
+        .rank-name { font-size: 1.05rem; font-weight: 600; color: #eee; margin: 0 0 3px 0; display: flex; align-items: center; gap: 6px; }
+        .rank-stats { font-size: 0.8rem; color: #777; margin: 0; }
+
+        .rank-score { font-size: 1.1rem; font-weight: 700; color: #888; font-family: 'Oswald', sans-serif; }
+
+        /* --- ✨ TOP 3: PREMIUM VIP CARDS ✨ --- */
+        .row-1, .row-2, .row-3 {
+            background: #111116;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        .row-1:hover, .row-2:hover, .row-3:hover { transform: translateY(-2px); }
+
+        /* 🥇 Gold Status */
+        .row-1 { border: 1px solid rgba(212, 175, 55, 0.1); border-left: 4px solid #D4AF37; }
+        .row-1 .rank-pos { color: #D4AF37; font-size: 1.6rem; }
+        .row-1 .rank-name { color: #fff; font-size: 1.2rem; }
+        .row-1 .rank-score { color: #D4AF37; background: rgba(212, 175, 55, 0.08); padding: 6px 14px; border-radius: 8px; }
+
+        /* 🥈 Silver Status */
+        .row-2 { border: 1px solid rgba(169, 169, 169, 0.1); border-left: 4px solid #A9A9A9; }
+        .row-2 .rank-pos { color: #A9A9A9; font-size: 1.5rem; }
+        .row-2 .rank-score { color: #A9A9A9; background: rgba(169, 169, 169, 0.08); padding: 5px 12px; border-radius: 8px; }
+
+        /* 🥉 Bronze Status */
+        .row-3 { border: 1px solid rgba(139, 69, 19, 0.1); border-left: 4px solid #cd7f32; position: relative; margin-bottom: 45px; }
+        .row-3 .rank-pos { color: #cd7f32; font-size: 1.4rem; }
+        .row-3 .rank-score { color: #cd7f32; background: rgba(139, 69, 19, 0.08); padding: 5px 12px; border-radius: 8px; }
+
+        /* The Divider Text under 3rd place */
+        .row-3::after {
+            content: "THE CONTENDERS";
+            position: absolute;
+            bottom: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: #555;
+            letter-spacing: 3px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* --- THE CONTENDERS (Rank 4+) --- */
+        .rank-row:not(.row-1):not(.row-2):not(.row-3) {
+            background: #111116;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            border-left: 1px solid rgba(255,255,255,0.03);
+            border-right: 1px solid rgba(255,255,255,0.03);
+        }
+        .rank-row:not(.row-1):not(.row-2):not(.row-3):hover { background: rgba(255,255,255,0.05); }
+        
+        /* Rounded top for Rank 4 */
+        .rank-row:nth-child(4) {
+            border-top: 1px solid rgba(255,255,255,0.03);
+            border-radius: 16px 16px 0 0;
+        }
+        /* Rounded bottom for the last rank */
+        .rank-row:last-child {
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            border-radius: 0 0 16px 16px;
+        }
+        /* Fix if Rank 4 is the ONLY contender */
+        .rank-row:nth-child(4):last-child {
+            border-radius: 16px;
+        }
+
+        /* Unified Bottom Navigation */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #0a0a0c; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-around; align-items: center; padding: 10px 0; z-index: 100; padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+        .nav-item { color: #666; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 0.75rem; font-weight: 500; transition: 0.2s; }
+        .nav-item.active, .nav-item:hover { color: var(--neon-blue); }
+        .nav-item i { font-size: 1.2rem; }
+        
+        .spill-btn-container { transform: translateY(-20px); }
+        .spill-btn { width: 55px; height: 55px; border-radius: 50%; background: linear-gradient(135deg, var(--neon-pink), var(--neon-blue)); display: flex; justify-content: center; align-items: center; font-size: 1.5rem; color: #fff; box-shadow: 0 5px 20px rgba(255, 77, 148, 0.4); transition: 0.3s; }
+        .spill-btn:hover { transform: scale(1.1); box-shadow: 0 5px 25px rgba(77, 148, 255, 0.6); }
+    </style>
+</head>
+<body class="board-page">
+
+    <header class="header-area">
+        <h1>Hall of Fame</h1>
+        <p>The most legendary spillers in the Lounge.</p>
+    </header>
+
+<!-- ☕ Dynamic Lounge Background -->
+    <div class="lounge-abstract-bg">
+        <div class="l-shape shape-pill lc-pink l1"></div>
+        <div class="l-shape shape-ring lc-blue l2"></div>
+        <div class="l-shape shape-diamond lc-outline lc-gold l3"></div>
+        <div class="l-shape shape-arc lc-purple l4"></div>
+        <div class="l-shape shape-diamond lc-blue l5"></div>
+        <div class="l-shape shape-pill lc-outline lc-pink l6"></div>
+    </div>
+
+    <div class="leaderboard-wrapper">
+        <main id="leaderboard-feed">
+            <p style="text-align: center; color: #666; margin: 30px 0; font-weight: 500;">Fetching the legends... ⏳</p>
+        </main>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="lounge.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="leaderboard.html" class="nav-item active"><i class="fas fa-trophy"></i><span>Board</span></a>
+        <a href="post-tea.html" class="nav-item spill-btn-container">
+            <div class="spill-btn"><i class="fas fa-plus"></i></div>
+        </a>
+        <a href="help.html" class="nav-item"><i class="fas fa-book"></i><span>Help</span></a>
+        <a href="profile.html" class="nav-item"><i class="fas fa-user"></i><span>Profile</span></a>
+    </nav>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

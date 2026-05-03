@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea House | Legal & Privacy</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Flat & Subtle Legal Page Layout */
+        body { 
+            background-color: #0a0a0c; 
+            color: #fff; 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            padding-bottom: 100px;
+            position: relative;
+        }
+
+        .legal-container { max-width: 800px; margin: 40px auto 40px; padding: 20px; position: relative; z-index: 10; }
+        
+        .page-title { text-align: center; margin-bottom: 40px; color: #fff; font-size: 2.2rem; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
+
+        .section-title { 
+            color: #e5e7eb !important; 
+            font-size: 1.5rem; 
+            margin-bottom: 15px; 
+            margin-top: 20px;
+            font-family: 'Oswald', sans-serif; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 10px;
+        }
+
+        /* Subtle Matte Cards */
+        .legal-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 12px; 
+            padding: 30px; 
+            margin-bottom: 40px; 
+        }
+
+        .legal-text {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .legal-text strong {
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ☕ Dynamic Lounge Background (Shapes) -->
+    <div class="lounge-abstract-bg">
+        <div class="l-shape shape-pill lc-pink l1"></div>
+        <div class="l-shape shape-ring lc-blue l2"></div>
+        <div class="l-shape shape-diamond lc-outline lc-gold l3"></div>
+        <div class="l-shape shape-arc lc-purple l4"></div>
+        <div class="l-shape shape-diamond lc-blue l5"></div>
+        <div class="l-shape shape-pill lc-outline lc-pink l6"></div>
+    </div>
+
+    <div class="legal-container">
+        <h2 class="page-title"><i class="fas fa-balance-scale" style="color: #888 !important; margin-right: 10px;"></i> LEGAL & PRIVACY</h2>
+
+        <div class="legal-card">
+            <h3 class="section-title">Privacy Policy</h3>
+            <p class="legal-text"><strong>1. Information We Collect</strong><br>
+            When you log in using Google OAuth, we collect your basic profile information, including your email address, name, and profile picture. We do not have access to your Google password.</p>
+            
+            <p class="legal-text"><strong>2. How We Use Your Information</strong><br>
+            We use this information solely to create your account, display your profile to other users, and secure the platform against spam and abuse.</p>
+            
+            <p class="legal-text"><strong>3. Data Storage & Security</strong><br>
+            Your data is securely stored using Supabase. We do not sell, rent, or trade your personal information to third parties.</p>
+
+            <p class="legal-text"><strong>4. Account Deletion</strong><br>
+            You have the right to delete your account at any time. Using the "Delete Account" feature in your profile menu will permanently erase your data, posts, and associations from our servers.</p>
+        </div>
+
+        <div class="legal-card">
+            <h3 class="section-title">Terms of Service</h3>
+            
+            <p class="legal-text"><strong>1. User Conduct & Content</strong><br>
+            The Tea House is a platform for sharing. You are solely responsible for the content you post. Do not post illegal, highly explicit (outside of designated 18+ areas), or violently threatening content. We reserve the right to remove any post at our discretion.</p>
+            
+            <p class="legal-text"><strong>2. Moderation & Bans</strong><br>
+            Management and appointed Moderators reserve the right to permanently ban any account that violates community guidelines, engages in spam, or harasses other users or does an unknown promotion of themselves or any stuff.You need the founders approval to promote anything.</p>
+            
+            <p class="legal-text"><strong>3. Liability Disclaimer</strong><br>
+            The Tea House and its founders are not liable for user-generated content. Gossip, opinions, and posts represent the views of the individual users, not the platform.</p>
+
+            <p class="legal-text"><strong>4. Age Restrictions</strong><br>
+            Certain sections of this website are strictly for users 18 and older. By accessing these sections, you confirm you meet the age requirements.</p>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <footer class="bottom-nav">
+        <a href="lounge.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="leaderboard.html" class="nav-item"><i class="fas fa-trophy"></i><span>Board</span></a>
+        <a href="post-tea.html" class="nav-item spill-btn-container">
+            <div class="spill-btn"><i class="fas fa-plus"></i></div>
+        </a>
+        <a href="help.html" class="nav-item"><i class="fas fa-book"></i><span>Help</span></a>
+        <a href="profile.html" class="nav-item"><i class="fas fa-user"></i><span>Profile</span></a>
+    </footer>
+
+</body>
+</html>

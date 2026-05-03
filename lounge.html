@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea House | Read & Share the Tea</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+</head>
+<body>
+
+    <!-- ☕ Dynamic Lounge Background -->
+    <div class="lounge-abstract-bg">
+        <div class="l-shape shape-pill lc-pink l1"></div>
+        <div class="l-shape shape-ring lc-blue l2"></div>
+        <div class="l-shape shape-diamond lc-outline lc-gold l3"></div>
+        <div class="l-shape shape-arc lc-purple l4"></div>
+        <div class="l-shape shape-diamond lc-blue l5"></div>
+        <div class="l-shape shape-pill lc-outline lc-pink l6"></div>
+    </div>
+
+    <header class="main-header" style="position: relative; z-index: 10;">
+        <h1 class="logo" style="font-size: 4.5rem; font-family: 'Oswald', sans-serif; text-transform: uppercase; background: linear-gradient(to right, var(--neon-pink, #ff4d94), var(--neon-blue, #4d94ff)); -webkit-background-clip: text; color: transparent; text-shadow: 0 0 30px rgba(255, 77, 148, 0.4); margin-bottom: 5px; margin-top: 40px;">
+            TEA HOUSE
+        </h1>
+        <p class="tagline" style="color: #aaa; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 0;">
+            Spill the secrets. Keep it hot. 🔥
+        </p>
+
+        <button class="hamburger-btn" onclick="window.openSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <div id="side-menu" class="sidebar">
+        <button class="close-btn" onclick="window.closeSidebar()">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <a href="notification.html" class="sidebar-item">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </a>
+
+            <a href="promos.html" class="sidebar-item">
+                <i class="fas fa-ad" style="color: var(--gold);"></i>
+                <span>Partners & Promos</span>
+            </a>
+            <a href="notices.html" class="sidebar-item">
+                <i class="fas fa-bullhorn" style="color: var(--neon-pink);"></i>
+                <span>Notice Board</span>
+            </a>
+
+            <div class="sidebar-item translate-wrapper">
+                <i class="fas fa-language"></i>
+                <div id="google_translate_element"></div>
+            </div>
+
+            <button onclick="window.resetTranslation()" class="sidebar-item">
+                <i class="fas fa-undo"></i>
+                <span>Reset</span>
+            </button>
+
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
+
+            <button id="sidebar-auth-btn" class="sidebar-item" style="color: #ff4d4d;">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Log Out</span>
+            </button>
+        </div>
+    </div>
+
+    <ul class="genre-nav" style="position: relative; z-index: 10;">
+        <li><a href="#" class="active" data-genre="trending">Trending</a></li>
+        <li><a href="#" data-genre="horror">Horror</a></li>
+        <li><a href="#" data-genre="chatpati">Chatpati (18+)</a></li>
+        <li><a href="#" data-genre="funny">Funny</a></li>
+        <li><a href="#" data-genre="normal">Normal</a></li>
+        <li><a href="#" data-genre="insta">Insta Tea</a></li>
+    </ul>
+
+    <main id="tea-feed" style="position: relative; z-index: 10;"></main>
+
+    <footer class="bottom-nav">
+        <a href="lounge.html" class="nav-item active"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="leaderboard.html" class="nav-item"><i class="fas fa-trophy"></i><span>Board</span></a>
+        <a href="post-tea.html" class="nav-item spill-btn-container">
+            <div class="spill-btn"><i class="fas fa-plus"></i></div>
+        </a>
+        <a href="help.html" class="nav-item"><i class="fas fa-book"></i><span>Help</span></a>
+        <a href="profile.html" class="nav-item"><i class="fas fa-user"></i><span>Profile</span></a>
+    </footer>
+
+    <div id="image-modal" onclick="window.closeFullscreenImage()" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 999999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+        <span style="position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; font-weight: bold; cursor: pointer;">&times;</span>
+        <img id="modal-image-content" onclick="event.stopPropagation()" style="max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 30px rgba(0,0,0,0.8);">
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/app.js?v=3"></script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en' 
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

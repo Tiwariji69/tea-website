@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea House | Help & Support</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Flat & Subtle Help Page Layout */
+        body { 
+            background-color: #0a0a0c; 
+            color: #fff; 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            padding-bottom: 100px;
+            position: relative;
+        }
+
+        .help-container { max-width: 600px; margin: 40px auto 40px; padding: 20px; position: relative; z-index: 10; }
+        
+        .page-title { text-align: center; margin-bottom: 40px; color: #fff; font-size: 2.2rem; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* 🛑 KILLS THE YELLOW: Forces a subtle off-white/grey text */
+        .section-title { 
+            color: #e5e7eb !important; 
+            font-size: 1.15rem; 
+            margin-bottom: 15px; 
+            font-family: 'Oswald', sans-serif; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
+
+        /* Subtle Matte Cards */
+        .support-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 25px; margin-bottom: 40px; }
+        #faq-container { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 0 20px; margin-bottom: 40px; }
+
+        .matte-input { width: 100%; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); color: #fff; padding: 15px; border-radius: 10px; font-family: 'Inter', sans-serif; resize: vertical; min-height: 120px; margin-bottom: 15px; box-sizing: border-box; transition: 0.3s; }
+        .matte-input:focus { outline: none; border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); }
+
+        /* 🛑 KILLS THE GLOW: Overrides the global style.css blue gradient & shadow */
+        .matte-btn { 
+            width: 100%; 
+            background: rgba(255, 255, 255, 0.05) !important; 
+            border: 1px solid rgba(255, 255, 255, 0.1) !important; 
+            color: #ccc !important; 
+            padding: 15px; 
+            border-radius: 10px; 
+            font-family: 'Oswald', sans-serif; 
+            font-size: 1.1rem; 
+            letter-spacing: 1px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            text-transform: uppercase; 
+            box-shadow: none !important; 
+        }
+        
+        .matte-btn:hover { 
+            background: rgba(255, 255, 255, 0.1) !important; 
+            color: #fff !important; 
+            transform: none !important; 
+            box-shadow: none !important; 
+        }
+
+        .link-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        
+        /* 🛑 KILLS THE SOCIAL HOVER GLOWS */
+        .matte-link { 
+            display: flex; align-items: center; justify-content: center; gap: 10px; 
+            background: rgba(255,255,255,0.03) !important; 
+            border: 1px solid rgba(255,255,255,0.05) !important; 
+            padding: 15px; border-radius: 10px; color: #ccc !important; 
+            text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.3s; 
+            box-shadow: none !important; 
+        }
+        
+        .matte-link:hover { 
+            background: rgba(255,255,255,0.08) !important; 
+            border-color: rgba(255,255,255,0.15) !important; 
+            color: #fff !important; 
+            transform: none !important; 
+            box-shadow: none !important; 
+        }
+
+        /* Forces icons to be a subtle grey instead of vibrant colors */
+        .matte-link i, .section-title i { color: #888 !important; transition: 0.3s; }
+        .matte-link:hover i { color: #fff !important; }
+    </style>
+</head>
+<body>
+
+    <!-- ☕ Dynamic Lounge Background (Shapes) -->
+    <div class="lounge-abstract-bg">
+        <div class="l-shape shape-pill lc-pink l1"></div>
+        <div class="l-shape shape-ring lc-blue l2"></div>
+        <div class="l-shape shape-diamond lc-outline lc-gold l3"></div>
+        <div class="l-shape shape-arc lc-purple l4"></div>
+        <div class="l-shape shape-diamond lc-blue l5"></div>
+        <div class="l-shape shape-pill lc-outline lc-pink l6"></div>
+    </div>
+
+    <div class="help-container">
+        <h2 class="page-title"> HELP & FAQ'S</h2>
+
+        <!-- FAQ SECTION -->
+        <h3 class="section-title"><i class="fas fa-question-circle"></i> FREQUENTLY ASKED QUESTIONS</h3>
+        <div id="faq-container">
+            <p style="color: #888; text-align: center; padding: 20px;">Loading FAQs... ⏳</p>
+        </div>
+
+        <!-- FEEDBACK SECTION -->
+        <div class="support-card">
+            <h3 class="section-title"><i class="fas fa-comment-dots"></i> SUBMIT FEEDBACK</h3>
+            <p style="color: #888; font-size: 0.9rem; margin-bottom: 20px;">Found a bug? Have a genius idea for a new feature? Tell management directly.</p>
+            
+            <textarea id="suggestion-text" placeholder="Type your message here..." class="matte-input"></textarea>
+            <button onclick="window.submitSuggestion()" class="matte-btn">SEND MESSAGE</button>
+        </div>
+
+        <!-- SOCIALS SECTION -->
+        <div class="support-card">
+            <h3 class="section-title"><i class="fas fa-users"></i> CONNECT WITH US</h3>
+            <p style="color: #888; font-size: 0.9rem; margin-bottom: 20px;">Join the community to get updates or reach out to management directly.</p>
+            
+            <div class="link-grid">
+                <a href="https://instagram.com/wakeuptiwari_ji" target="_blank" class="matte-link">
+                    <i class="fab fa-instagram"></i> <span>Instagram</span>
+                </a>
+                <a href="https://discord.gg/your_discord" target="_blank" class="matte-link">
+                    <i class="fab fa-discord"></i> <span>Discord</span>
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=teahubcommunity@gmail.com" target="_blank" class="matte-link" style="grid-column: span 2;">
+                    <i class="fas fa-envelope"></i> <span>Email Support Team</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <footer class="bottom-nav">
+        <a href="lounge.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="leaderboard.html" class="nav-item"><i class="fas fa-trophy"></i><span>Board</span></a>
+        <a href="post-tea.html" class="nav-item spill-btn-container">
+            <div class="spill-btn"><i class="fas fa-plus"></i></div>
+        </a>
+        <a href="help.html" class="nav-item active"><i class="fas fa-book"></i><span>Help</span></a>
+        <a href="profile.html" class="nav-item"><i class="fas fa-user"></i><span>Profile</span></a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

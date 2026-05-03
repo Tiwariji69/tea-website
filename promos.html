@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partners & Promos | Tea House</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background: #0a0a0c; color: white; font-family: 'Inter', sans-serif; margin: 0; padding-bottom: 100px; }
+        .page-header { text-align: center; padding: 40px 20px 20px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.05); background: #111116; }
+        .page-header h1 { font-family: 'Oswald', sans-serif; font-size: 2.2rem; margin: 0; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
+        .back-btn { position: absolute; top: 20px; left: 20px; color: white; font-size: 1.5rem; text-decoration: none; background: rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 50%; transition: 0.3s; }
+        .back-btn:hover { background: var(--neon-blue); }
+
+        .promo-feed { max-width: 600px; margin: 30px auto; padding: 0 20px; }
+        
+        .promo-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,188,76,0.3); border-radius: 20px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .promo-card-header { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .promo-card-header h2 { font-family: 'Oswald', sans-serif; color: white; margin: 0 0 10px 0; font-size: 1.5rem; }
+        .promo-card-header p { color: #aaa; font-size: 0.95rem; line-height: 1.6; margin: 0; }
+        
+        /* THE AUTO-CROP GALLERY */
+        .promo-media-gallery { display: flex; overflow-x: auto; gap: 10px; padding: 15px 20px; background: rgba(0,0,0,0.3); scroll-snap-type: x mandatory; }
+        .promo-media-item { flex: 0 0 85%; height: 250px; border-radius: 12px; overflow: hidden; scroll-snap-align: center; border: 1px solid rgba(255,255,255,0.1); }
+        .promo-media-item img, .promo-media-item video { width: 100%; height: 100%; object-fit: cover; /* This acts as the auto-crop! */ }
+        
+        .promo-action { padding: 20px; text-align: center; background: rgba(255,188,76,0.05); }
+        .promo-btn { display: inline-block; background: var(--gold); color: #000; font-family: 'Oswald', sans-serif; font-weight: bold; font-size: 1.1rem; padding: 15px 40px; border-radius: 30px; text-decoration: none; text-transform: uppercase; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,188,76,0.3); }
+        .promo-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255,188,76,0.5); }
+    </style>
+</head>
+<body>
+
+    <header class="page-header">
+        <a href="lounge.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <h1><i class="fas fa-ad"></i> Promotions</h1>
+        <p style="color: #888; font-size: 0.9rem; margin-top: 5px;">Exclusive deals, games, and partnerships.</p>
+    </header>
+
+    <main class="promo-feed" id="promo-page-feed">
+        <p style="text-align: center; color: #888; margin-top: 50px;">Loading campaigns... ⏳</p>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

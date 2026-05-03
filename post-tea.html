@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spill Tea | Tea House</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- MATTE UI RESET --- */
+        body { background: #0a0a0c; color: #fff; font-family: 'Inter', sans-serif; min-height: 100vh; padding-bottom: 100px; margin: 0; }
+
+        .header-area { text-align: center; padding: 50px 20px 20px; }
+        .header-area h1 { font-family: 'Oswald', sans-serif; font-size: 2.5rem; color: #fff; margin: 0; letter-spacing: 1px; text-transform: uppercase; }
+        .header-area p { color: #888; font-size: 0.95rem; margin-top: 8px; }
+
+        /* Form Container */
+        .post-container { max-width: 500px; margin: 0 auto; padding: 30px; background: #111116; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+        .input-group { margin-bottom: 25px; text-align: left; }
+        .input-group label { display: block; font-size: 0.85rem; color: #aaa; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 10px; }
+
+        /* Sleek Inputs */
+        select, textarea { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 16px; border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 1rem; box-sizing: border-box; transition: 0.2s; appearance: none; }
+        select:focus, textarea:focus { outline: none; border-color: var(--neon-blue); background: rgba(255,255,255,0.05); box-shadow: 0 0 15px rgba(77,148,255,0.1); }
+        select option { background: #111116; color: #fff; padding: 10px; }
+        textarea { resize: vertical; min-height: 140px; line-height: 1.5; }
+
+        /* Dropzone Styling */
+        .upload-area { border: 2px dashed rgba(255,255,255,0.1); border-radius: 12px; padding: 35px 20px; text-align: center; cursor: pointer; transition: 0.2s; background: rgba(255,255,255,0.02); display: block; }
+        .upload-area:hover { border-color: var(--neon-blue); background: rgba(255,255,255,0.04); }
+        .upload-area i { font-size: 2.2rem; color: var(--neon-blue); margin-bottom: 12px; }
+        .upload-area span { display: block; color: #888; font-size: 0.95rem; font-weight: 500; }
+
+        /* Previews */
+        #preview-grid { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+        #remove-image { background: rgba(255,50,50,0.1); color: #ff4d4d; border: 1px solid rgba(255,50,50,0.2); padding: 8px 15px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 600; margin-top: 10px; display: inline-block; transition: 0.2s; }
+        #remove-image:hover { background: rgba(255,50,50,0.2); }
+
+        /* Big Submit Button */
+        .submit-btn { background: var(--neon-blue); color: #fff; border: none; padding: 18px; border-radius: 12px; font-family: 'Oswald', sans-serif; font-size: 1.2rem; letter-spacing: 2px; cursor: pointer; transition: 0.3s; width: 100%; font-weight: 600; text-transform: uppercase; margin-top: 10px; }
+        .submit-btn:hover { box-shadow: 0 5px 25px rgba(77, 148, 255, 0.4); transform: translateY(-2px); }
+
+        /* Unified Bottom Navigation */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #0a0a0c; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-around; align-items: center; padding: 10px 0; z-index: 100; padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+        .nav-item { color: #666; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 0.75rem; font-weight: 500; transition: 0.2s; }
+        .nav-item.active, .nav-item:hover { color: var(--neon-blue); }
+        .nav-item i { font-size: 1.2rem; }
+        
+        .spill-btn-container { transform: translateY(-20px); }
+        .spill-btn { width: 55px; height: 55px; border-radius: 50%; background: linear-gradient(135deg, var(--neon-pink), var(--neon-blue)); display: flex; justify-content: center; align-items: center; font-size: 1.5rem; color: #fff; box-shadow: 0 5px 20px rgba(255, 77, 148, 0.4); transition: 0.3s; }
+        .spill-btn:hover { transform: scale(1.1); box-shadow: 0 5px 25px rgba(77, 148, 255, 0.6); }
+    </style>
+</head>
+<body>
+
+    <!-- ☕ Dynamic Lounge Background -->
+    <div class="lounge-abstract-bg">
+        <div class="l-shape shape-pill lc-pink l1"></div>
+        <div class="l-shape shape-ring lc-blue l2"></div>
+        <div class="l-shape shape-diamond lc-outline lc-gold l3"></div>
+        <div class="l-shape shape-arc lc-purple l4"></div>
+        <div class="l-shape shape-diamond lc-blue l5"></div>
+        <div class="l-shape shape-pill lc-outline lc-pink l6"></div>
+    </div>
+
+    <header class="header-area">
+        <h1>Spill The Tea</h1>
+        <p>Got something on your mind? Drop it below.</p>
+    </header>
+
+    <main class="post-container">
+        <form id="tea-form">
+            <div class="input-group">
+                <label>Select Genre</label>
+                <select id="genre">
+                    <option value="loading">Loading genres...</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>The Tea</label>
+                <textarea id="tea-content" placeholder="Type your story here..." required></textarea>
+            </div>
+
+            <div class="input-group">
+                <label>Attach Proofs (Images & Videos)</label>
+                <label id="upload-label" class="upload-area">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>Click to browse files</span>
+                    <input type="file" id="media-upload" accept="image/*,video/*" multiple style="display:none;">
+                </label>
+
+                <div id="image-preview-container" style="display:none; margin-top: 15px;">
+                    <div id="preview-grid"></div>
+                    <button type="button" id="remove-image"><i class="fas fa-trash"></i> Clear Files</button>
+                </div>
+            </div>
+
+            <button type="submit" id="submit-tea" class="submit-btn">POST TO THE LOUNGE</button>
+        </form>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="lounge.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="leaderboard.html" class="nav-item"><i class="fas fa-trophy"></i><span>Board</span></a>
+        <a href="post-tea.html" class="nav-item spill-btn-container">
+            <div class="spill-btn"><i class="fas fa-plus"></i></div>
+        </a>
+        <a href="help.html" class="nav-item"><i class="fas fa-book"></i><span>Help</span></a>
+        <a href="profile.html" class="nav-item"><i class="fas fa-user"></i><span>Profile</span></a>
+    </nav>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

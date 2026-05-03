@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications | Tea House</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .notif-container { max-width: 600px; margin: 80px auto 40px; padding: 20px; }
+        .notif-card { background: rgba(255,255,255,0.05); padding: 15px 20px; border-radius: 15px; margin-bottom: 10px; border-left: 4px solid var(--neon-blue); display: flex; align-items: center; gap: 15px; transition: 0.3s; }
+        .notif-card.unread { background: rgba(77, 148, 255, 0.1); border-left-color: var(--neon-pink); }
+        .notif-icon { font-size: 1.5rem; width: 40px; text-align: center; }
+        .notif-icon.like { color: var(--neon-pink); }
+        .notif-icon.comment { color: var(--neon-blue); }
+        .notif-icon.follow { color: var(--gold); }
+        .notif-text { color: white; font-family: 'Oswald', sans-serif; font-size: 1rem; }
+        .notif-time { color: #888; font-size: 0.8rem; margin-top: 5px; }
+        .back-btn { position: absolute; top: 20px; left: 20px; color: white; font-size: 1.5rem; text-decoration: none; background: rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 50%; }
+    </style>
+</head>
+<body>
+
+    <a href="lounge.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+
+    <header class="main-header" style="padding-top: 20px; padding-bottom: 10px;">
+        <h1 class="logo" style="font-size: 3rem; font-family: 'Oswald', sans-serif; text-transform: uppercase; background: linear-gradient(to right, var(--neon-pink), var(--neon-blue)); -webkit-background-clip: text; color: transparent;">
+            NOTIFICATIONS
+        </h1>
+    </header>
+
+    <main class="notif-container" id="notifications-list">
+        <p style="text-align: center; color: #888;">Loading your tea alerts...</p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/app.js"></script>
+    <script type="module">
+        import { loadNotifications } from './js/app.js';
+        document.addEventListener('DOMContentLoaded', loadNotifications);
+    </script>
+</body>
+</html>
