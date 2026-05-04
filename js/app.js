@@ -188,7 +188,13 @@ async function checkUser() {
 }
 
 window.loginWithGoogle = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin + '/lounge.html' } });
+    // Automatically figures out if you are on localhost or GitHub Pages
+    let baseUrl = window.location.href.split('/auth.html')[0];
+    
+    const { error } = await supabase.auth.signInWithOAuth({ 
+        provider: 'google', 
+        options: { redirectTo: baseUrl + '/lounge.html' } 
+    });
     if (error) window.customAlert("Google Login Error: " + error.message, "Error", true);
 };
 
@@ -372,19 +378,18 @@ async function loadTeaFeed(filter = 'trending') {
                             <p class="tea-text">${escapeHTML(displayContent)}</p>
                             ${mediaIndicator}${readMoreBtn}
                         </div>
-                        <div class="card-footer">
-                           <div class="votes">
-                                <button onclick="handleVote(${post.id}, 'up')" class="vote-up" ${upClass}>☕ <span id="up-${post.id}">${post.upvotes || 0}</span></button>
-                                <button onclick="handleVote(${post.id}, 'down')" class="vote-down" ${downClass}>⬇️ <span id="down-${post.id}">${post.downvotes || 0}</span></button>
-                                <span style="color: var(--neon-blue); font-size: 0.9rem; margin-left: 10px;"><i class="fas fa-eye"></i> ${post.views || 0}</span>
+                            <div class="card-footer">
+                            <div class="votes">
+                             <button onclick="handleVote(${post.id}, 'up')" class="vote-up" ${upClass}>☕ <span id="up-${post.id}">${post.upvotes || 0}</span></button>
+                                        <button onclick="handleVote(${post.id}, 'down')" class="vote-down" ${downClass}>⬇️ <span id="down-${post.id}">${post.downvotes || 0}</span></button>
+                                </div>
+                                <div class="actions">
+                                    <button onclick="toggleComments(${post.id})" class="comment-btn">💬</button>
+                                    <button onclick="shareTea(${post.id})" class="share-btn">🔗</button>
+                                    <button onclick="toggleFavourite(${post.id})" class="fav-btn" style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); color: white; padding: 8px 12px; border-radius: 12px; cursor: pointer;">❤️</button>
+                                    <button onclick="toggleSave(${post.id})" class="save-btn">🔖</button>
+                                </div>
                             </div>
-                            <div class="actions">
-                                <button onclick="toggleComments(${post.id})" class="comment-btn">💬</button>
-                                <button onclick="shareTea(${post.id})" class="share-btn">🔗</button>
-                                <button onclick="toggleFavourite(${post.id})" class="fav-btn" style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); color: white; padding: 8px 12px; border-radius: 12px; cursor: pointer;">❤️</button>
-                                <button onclick="toggleSave(${post.id})" class="save-btn">🔖</button>
-                            </div>
-                        </div>
                         <div id="comment-section-${post.id}" style="display:none; margin-top:20px; border-top:1px solid rgba(255,255,255,0.1); padding-top:15px;">
                             <div id="comment-list-${post.id}" style="max-height:300px; overflow-y:auto; margin-bottom:15px; text-align: left;"></div>
                             <div style="display:flex; gap:10px;">
